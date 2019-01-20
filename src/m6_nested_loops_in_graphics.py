@@ -95,6 +95,7 @@ def draw_L(window, circle, r, c):
             t = rg.Circle(rg.Point(x + s * k * 2, y + s * j * 2), s)
             t.fill_color = circle.fill_color
             t.attach_to(window)
+            window.render(.1)
     x = x
     y = y + 2*r*s
     for j in range(c + 3):
@@ -102,7 +103,8 @@ def draw_L(window, circle, r, c):
             t = rg.Circle(rg.Point(x + s*j*2, y + s*k*2), s)
             t.fill_color = circle.fill_color
             t.attach_to(window)
-    window.render()
+            window.render(.1)
+
 
 def run_test_draw_wall_on_right():
     """ Tests the    draw_wall_on_right    function. """
@@ -140,14 +142,16 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # Done: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
     l = rectangle.corner_2.x - rectangle.corner_1.x
     h = rectangle.corner_2.y - rectangle.corner_1.y
     for j in range(n):
-        for k in range(n):
-            r = rg.Rectangle()
+        for k in range(j + 1):
+            r = rg.Rectangle(rg.Point(rectangle.corner_1.x - k*l, rectangle.corner_1.y + j*h), rg.Point(rectangle.corner_2.x - k*l, rectangle.corner_2.y + j*h))
+            r.attach_to(window)
+            window.render(.1)
 
 
 # ----------------------------------------------------------------------
